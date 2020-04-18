@@ -1,0 +1,16 @@
+footer {
+    position:left;
+    bottom:0;
+    width:100%;
+    background:#ffc107;
+    font-size: 15pt;
+ }
+
+ footer ul {
+ text-align: center;
+ display: inline-flex;
+ }
+ footer ul li {
+     margin-right: 10px;
+ }
+ 
