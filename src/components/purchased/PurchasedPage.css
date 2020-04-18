@@ -1,0 +1,7 @@
+.form-control:disabled {
+    border: none;
+    background-color: #FFC107;
+    margin: 0;
+    font-size: 17pt;
+    margin-bottom: 0mm;
+}
