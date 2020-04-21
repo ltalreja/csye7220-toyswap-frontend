@@ -1,7 +1,9 @@
 import axios from "axios";
 import Auth from "../services/Auth";
 
-const BASE_URL = "http://localhost:8080";
+// const BASE_URL = "http://localhost:8080";
+
+const BASE_URL = "http://toyswap.csye6225-su19-patilprat.me";
 
 const Api = axios.create({
     baseURL: BASE_URL,
@@ -26,7 +28,6 @@ Api.interceptors.response.use(
         return Promise.reject(err);
     }
 )
-
 
 // Exporting Api into the global namespace for introspecting
 window.Api = Api;

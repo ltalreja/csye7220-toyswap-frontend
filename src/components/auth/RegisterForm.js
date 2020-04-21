@@ -5,6 +5,13 @@ function RegisterForm({ onSubmit }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const handleSubmit = (name, email, password) => {
+        onSubmit({ name, email, password });
+        setName('');
+        setEmail('');
+        setPassword('');
+    };
+
     return (
         <div className="card ">
             <div className="card-body bg-warning rounded">
@@ -41,7 +48,7 @@ function RegisterForm({ onSubmit }) {
                         <img src="parenthood1.svg" class="rounded float-right" width="50" height="50" alt="logo" />
                         <button
                             className="btn btn-success float-left"
-                            onClick={e => onSubmit({ name, email, password })}>
+                            onClick={e => handleSubmit(name, email, password) }>
                             Create account
                         </button>
                     </div>

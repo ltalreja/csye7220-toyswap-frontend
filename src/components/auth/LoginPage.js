@@ -15,6 +15,8 @@ class LoginPage extends Component {
         const registerSuccess = await Auth.register(registrationData);
         if (!registerSuccess) {
             alert("Couldn't register check credentials and try again");
+        } else{
+            alert("Account created");
         }
     }
 
