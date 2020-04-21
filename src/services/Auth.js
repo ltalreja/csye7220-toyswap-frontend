@@ -33,8 +33,13 @@ class Auth {
     async _loginOrRegister(action, data) {
         try {
             const response = await action(data);
-            this._setToken(response.data.token);
-            this.setLoggedIn(true);
+            console.log(response.data.token);
+            if(action === AuthApi.authenticate){
+                this._setToken(response.data.token);
+                this.setLoggedIn(true);
+            } else{
+                this._setToken(null);
+            }
             return true;
         } catch (e) {
             console.error(e);

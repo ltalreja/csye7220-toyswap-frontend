@@ -14,10 +14,10 @@ class PurchasedPage extends React.Component {
     }
 
     async componentDidMount() {
-
         const rest = await PurchasedToysApi.getPurchasedToys()
         this.setState({ results: rest.data })
     }
+
     render() {
         return (
             <div id="main-group">
