@@ -5,10 +5,10 @@ const port = 3000
 const request = require('request');
 
 const runtimeEnv = process.argv[2];
-let domainName = "http://nginx-ingress-controller.api.svc.cluster.local:80"
+let domainName = "http://nginx-ingress-controller.default.svc.cluster.local:80"
 
 if (runtimeEnv === "prod") {
-    domainName = "http://nginx-ingress-controller.api.svc.cluster.local:80"
+    domainName = "http://nginx-ingress-controller.default.svc.cluster.local:80"
     // domainName = "a6c37003cea4c4884b06f28ec772fffe-2133634489.us-east-1.elb.amazonaws.com:80"
 }
 // console.log(${domainName});
