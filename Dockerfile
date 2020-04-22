@@ -1,20 +1,22 @@
-# pull official base image
-FROM node:13.12.0-alpine
-
-# set working directory
+# Stage 1 to build static HTML and JS
+FROM tiangolo/node-frontend:10 as build-stage
 WORKDIR /app
+COPY package*.json /app/
+RUN npm install
+COPY ./ /app/
+RUN npm run build
+# RUN echo $(ls -ltr)
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
+# Stage 2 to copy static HTML and JS from above stage to nginx server directory
+FROM node:10
+COPY --from=build-stage /app/server/ /app
+COPY --from=build-stage /app/build/ /app/build
+WORKDIR /app
+RUN npm install
+RUN echo $(ls -ltr)
+# Copy the default nginx.conf provided by tiangolo/node-frontend
+EXPOSE 3001
 
-# add app
-COPY . ./
-
-# start app
-CMD ["npm", "start"]
+# Start Nginx server
+ENTRYPOINT ["node","server.js","prod" ]
